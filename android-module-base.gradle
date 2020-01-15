@@ -1,0 +1,53 @@
+/**
+ * Gradle file that is shared to all android modules
+ */
+import dependencies.*
+
+apply plugin: 'com.android.library'
+apply from: "$rootDir/core-dependencies.gradle"
+
+android {
+    compileSdkVersion Versions.compileSdk
+    defaultConfig {
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        allWarningsAsErrors = true
+        jvmTarget = "1.8"
+    }
+    buildTypes {
+        debug {
+            buildConfigField 'String', 'BASE_HTTP_URL', '"https://itunes.apple.com/"'
+        }
+        release {
+            minifyEnabled false
+            buildConfigField 'String', 'BASE_HTTP_URL', '"https://itunes.apple.com/"'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'org.jetbrains.kotlin' && requested.name == 'kotlin-reflect') {
+                details.useVersion Versions.kotlin
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.constraintLayout
+
+    implementation Libs.Network.retrofit
+    implementation Libs.Network.retrofitRxAdapter
+    implementation Libs.RxJava.rxJava
+    implementation Libs.RxJava.rxAndroid
+}

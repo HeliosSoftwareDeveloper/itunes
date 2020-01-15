@@ -4,10 +4,10 @@ package dependencies
 /**
  * Created by Ruel N. Grajo on 01/15/2020.
  *
- * File that contains objects used to contain dependencies
+ * File that contains object used for dependencies
  */
 
-// Object that is used for dependency versions
+// Object that is used for dependency version
 object Versions {
 
     // build
@@ -54,8 +54,11 @@ object Libs {
     private object Android {
         const val androidGradle = "com.android.tools.build:gradle:${Versions.androidGradle}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+
         const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
         const val lifecycleViewModelktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+
         const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
         const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"

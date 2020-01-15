@@ -2,11 +2,7 @@ import dependencies.*
 
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
-
-apply plugin: 'kotlin-kapt'
+apply from: '../core-dependencies.gradle'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -21,11 +17,9 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField 'String', 'BASE_HTTP_URL', '"https://itunes.apple.com/"'
         }
         release {
             minifyEnabled false
-            buildConfigField 'String', 'BASE_HTTP_URL', '"https://itunes.apple.com/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,25 +30,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation Libs.Kotlin.kotlin
-    implementation Libs.Android.appcompat
-    implementation Libs.Android.coreKtx
-    implementation Libs.Android.constraintLayout
-    implementation Libs.Android.lifecycleExtensions
-    implementation Libs.Android.lifecycleViewModelktx
-    implementation Libs.Android.materialDesign
-
-    implementation Libs.Network.retrofit
-    implementation Libs.Network.retrofitGSONConverter
-    implementation Libs.Network.retrofitRxAdapter
-
-    implementation Libs.RxJava.rxAndroid
-    implementation Libs.RxJava.rxJava
-
-    implementation Libs.Dagger.core
-    kapt Libs.Dagger.compiler
-
-    testImplementation Libs.Test.jUnit
-    androidTestImplementation Libs.Test.testRunner
-    androidTestImplementation Libs.Test.androidxTestCore
+    implementation project(':common')
 }
