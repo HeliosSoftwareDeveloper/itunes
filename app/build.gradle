@@ -1,35 +1,60 @@
+import dependencies.*
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion Versions.compileSdk
+    buildToolsVersion Versions.buildTools
     defaultConfig {
         applicationId "com.heliossoftwaredeveloper.itunes"
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField 'String', 'BASE_HTTP_URL', '"https://itunes.apple.com/"'
+        }
         release {
             minifyEnabled false
+            buildConfigField 'String', 'BASE_HTTP_URL', '"https://itunes.apple.com/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation Libs.Kotlin.kotlin
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.coreKtx
+    implementation Libs.Android.constraintLayout
+    implementation Libs.Android.lifecycleExtensions
+    implementation Libs.Android.lifecycleViewModelktx
+    implementation Libs.Android.materialDesign
+
+    implementation Libs.Network.retrofit
+    implementation Libs.Network.retrofitGSONConverter
+    implementation Libs.Network.retrofitRxAdapter
+
+    implementation Libs.RxJava.rxAndroid
+    implementation Libs.RxJava.rxJava
+
+    implementation Libs.Dagger.core
+    kapt Libs.Dagger.compiler
+
+    testImplementation Libs.Test.jUnit
+    androidTestImplementation Libs.Test.testRunner
+    androidTestImplementation Libs.Test.androidxTestCore
 }
