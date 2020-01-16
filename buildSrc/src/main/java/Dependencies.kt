@@ -2,9 +2,9 @@
 package dependencies
 
 /**
- * Created by Ruel N. Grajo on 01/15/2020.
- *
  * File that contains object used for dependencies
+ *
+ * @author Ruel N. Grajo on 01/15/2020.
  */
 
 // Object that is used for dependency version

@@ -6,9 +6,9 @@ import io.reactivex.Observable
 import retrofit2.http.*
 
 /**
- * Created by Ruel N. Grajo on 01/16/2020.
- *
  * Retrofit Service interface for Track API
+ *
+ * @author Ruel N. Grajo on 01/16/2020.
  */
 
 interface TrackApiService {

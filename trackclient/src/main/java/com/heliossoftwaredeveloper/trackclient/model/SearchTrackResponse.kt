@@ -2,9 +2,9 @@
 package com.heliossoftwaredeveloper.trackclient.model
 
 /**
- * Created by Ruel N. Grajo on 01/16/2020.
- *
  * File that contains Data classes for search track response
+ *
+ * @author Ruel N. Grajo on 01/16/2020.
  */
 
 data class SearchTrackResponse (val results : ArrayList<TrackDetailResult>, val resultCount : Int)

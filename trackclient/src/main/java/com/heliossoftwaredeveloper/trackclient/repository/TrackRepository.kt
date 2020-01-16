@@ -6,9 +6,9 @@ import com.heliossoftwaredeveloper.trackclient.model.SearchTrackResponse
 import io.reactivex.Observable
 
 /**
- * Created by Ruel N. Grajo on 01/16/2020.
- *
  * Repository class for Track related stuff
+ *
+ * @author Ruel N. Grajo on 01/16/2020.
  */
 
 interface TrackRepository {
@@ -17,7 +17,7 @@ interface TrackRepository {
      *
      * @param term the keyword of track that the user is looking for.
      * @param country the two-letter country code for the store. Example: US, AU, PH. The default is US.
-     * @param media the media type you want to search. Example: movie, podcast, music, musicVideo, audiobook, shortFilm, tvShow, software, ebook, all
+     * @param media the media type of the track. Example: movie, podcast, music, musicVideo, audiobook, shortFilm, tvShow, software, ebook, all
      *
      * @return the observable object that contains list of matched tracks based on the searched track.
      */

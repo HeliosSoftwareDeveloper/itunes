@@ -9,9 +9,9 @@ import dagger.Provides
 import javax.inject.Singleton
 
 /**
- * Created by Ruel N. Grajo on 01/15/2020.
- *
  * Dependency Module for shared components
+ *
+ * @author Ruel N. Grajo on 01/15/2020.
  */
 
 @Module

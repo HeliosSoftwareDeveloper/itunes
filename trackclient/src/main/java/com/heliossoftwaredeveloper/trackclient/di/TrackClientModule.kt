@@ -10,9 +10,9 @@ import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 /**
- * Created by Ruel N. Grajo on 01/16/2020.
- *
  * Dependency Module for Track API client
+ *
+ * @author Ruel N. Grajo on 01/16/2020.
  */
 
 @Module

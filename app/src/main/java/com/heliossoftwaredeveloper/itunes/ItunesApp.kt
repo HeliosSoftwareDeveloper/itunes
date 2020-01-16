@@ -9,9 +9,9 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 
 /**
- * Created by Ruel N. Grajo on 01/15/2020.
- *
  * Application Class
+ *
+ * @author Ruel N. Grajo on 01/15/2020.
  */
 
 class ItunesApp : DaggerApplication() {

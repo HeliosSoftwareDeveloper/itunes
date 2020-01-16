@@ -7,9 +7,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Created by Ruel N. Grajo on 01/16/2020.
- *
  * Client class to Intercept request
+ *
+ * @author Ruel N. Grajo on 01/16/2020.
  */
 
 class TrackApiClient(okHttp: OkHttpClient.Builder) : Interceptor, Authenticator {

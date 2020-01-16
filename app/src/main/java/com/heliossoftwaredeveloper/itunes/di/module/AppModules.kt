@@ -7,9 +7,9 @@ import com.heliossoftwaredeveloper.trackclient.di.TrackClientModule
 import dagger.Module
 
 /**
- * Created by Ruel N. Grajo on 01/15/2020.
- *
  * Dependency Module for Application Specific
+ *
+ * @author Ruel N. Grajo on 01/15/2020.
  */
 
 @Module(

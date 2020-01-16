@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 /**
- * Created by Ruel N. Grajo on 01/15/2020.
- *
  * Main Activity Class
+ *
+ * @author Ruel N. Grajo on 01/15/2020.
  */
 
 class MainActivity : AppCompatActivity() {

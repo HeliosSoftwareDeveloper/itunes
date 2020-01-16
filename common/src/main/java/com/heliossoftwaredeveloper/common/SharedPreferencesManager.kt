@@ -4,9 +4,9 @@ package com.heliossoftwaredeveloper.common
 import android.content.SharedPreferences
 
 /**
- * Created by Ruel N. Grajo on 01/15/2020.
- *
  * Manager class to handle SharedPreferences
+ *
+ * @author Ruel N. Grajo on 01/15/2020.
  */
 
 class SharedPreferencesManager(private val sharedPreferences: SharedPreferences) {
