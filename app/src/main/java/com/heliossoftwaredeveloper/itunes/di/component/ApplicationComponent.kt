@@ -2,12 +2,13 @@
 package com.heliossoftwaredeveloper.itunes.di.component
 
 import android.app.Application
-import com.heliossoftwaredeveloper.common.CommonModule
-import com.heliossoftwaredeveloper.common.NetworkModule
+import com.heliossoftwaredeveloper.common.di.CommonModule
+import com.heliossoftwaredeveloper.common.di.NetworkModule
 import com.heliossoftwaredeveloper.itunes.ItunesApp
 import com.heliossoftwaredeveloper.itunes.di.module.AppModules
 import com.heliossoftwaredeveloper.itunes.di.module.ViewModelBindingModule
 import com.heliossoftwaredeveloper.itunes.di.module.ActivityBindingModule
+import com.heliossoftwaredeveloper.trackclient.di.TrackClientModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -35,7 +36,8 @@ interface ApplicationComponent : AndroidInjector<ItunesApp> {
     interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
-        fun networkModule(network: NetworkModule): Builder
+        fun networkModule(networkModule: NetworkModule): Builder
+        fun trackClientModule(trackClientModule: TrackClientModule): Builder
         fun commonModule(commonModule: CommonModule): Builder
         fun build(): ApplicationComponent
     }

@@ -1,8 +1,9 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.common
+package com.heliossoftwaredeveloper.common.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.heliossoftwaredeveloper.common.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -30,5 +31,8 @@ class CommonModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun provideSharedPreferencesManager(sharedPreferences: SharedPreferences) = SharedPreferencesManager(sharedPreferences)
+    fun provideSharedPreferencesManager(sharedPreferences: SharedPreferences) =
+        SharedPreferencesManager(
+            sharedPreferences
+        )
 }

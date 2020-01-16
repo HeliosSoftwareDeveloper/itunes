@@ -1,8 +1,9 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.itunes.di.module
 
-import com.heliossoftwaredeveloper.common.CommonModule
-import com.heliossoftwaredeveloper.common.NetworkModule
+import com.heliossoftwaredeveloper.common.di.CommonModule
+import com.heliossoftwaredeveloper.common.di.NetworkModule
+import com.heliossoftwaredeveloper.trackclient.di.TrackClientModule
 import dagger.Module
 
 /**
@@ -14,7 +15,8 @@ import dagger.Module
 @Module(
     includes = [
         CommonModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        TrackClientModule::class
     ]
 )
 class AppModules

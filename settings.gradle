@@ -1,2 +1,2 @@
-include ':app', ':common'
+include ':app', ':common', ':trackclient'
 rootProject.name='Itunes'

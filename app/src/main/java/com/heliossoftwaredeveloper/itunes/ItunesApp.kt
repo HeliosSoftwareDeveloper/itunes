@@ -1,9 +1,10 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.itunes
 
-import com.heliossoftwaredeveloper.common.CommonModule
-import com.heliossoftwaredeveloper.common.NetworkModule
+import com.heliossoftwaredeveloper.common.di.CommonModule
+import com.heliossoftwaredeveloper.common.di.NetworkModule
 import com.heliossoftwaredeveloper.itunes.di.component.DaggerApplicationComponent
+import com.heliossoftwaredeveloper.trackclient.di.TrackClientModule
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 
@@ -29,7 +30,12 @@ class ItunesApp : DaggerApplication() {
             .networkModule(
                 NetworkModule()
             )
-            .commonModule(CommonModule(context))
+            .trackClientModule(TrackClientModule())
+            .commonModule(
+                CommonModule(
+                    context
+                )
+            )
             .build()
     }
 }
