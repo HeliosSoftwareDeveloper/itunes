@@ -1,0 +1,6 @@
+apply from: "$rootDir/android-module-base.gradle"
+
+dependencies {
+    implementation project(':common')
+    implementation project(':trackclient')
+}
