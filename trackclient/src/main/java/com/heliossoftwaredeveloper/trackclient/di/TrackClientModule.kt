@@ -2,6 +2,8 @@
 package com.heliossoftwaredeveloper.trackclient.di
 
 import com.heliossoftwaredeveloper.trackclient.TrackApiClient
+import com.heliossoftwaredeveloper.trackclient.repository.TrackRepository
+import com.heliossoftwaredeveloper.trackclient.repository.TrackRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -18,6 +20,9 @@ class TrackClientModule {
 
     @Provides
     @Singleton
-    fun provideApiClient(client: OkHttpClient.Builder) =
-        TrackApiClient(client)
+    fun provideApiClient(client: OkHttpClient.Builder) = TrackApiClient(client)
+
+    @Provides
+    @Singleton
+    fun provideTrackRepository(apiClient: TrackApiClient): TrackRepository = TrackRepositoryImpl(apiClient)
 }

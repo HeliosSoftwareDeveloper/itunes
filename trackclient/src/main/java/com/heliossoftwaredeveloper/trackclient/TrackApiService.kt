@@ -13,5 +13,5 @@ import retrofit2.http.*
 
 interface TrackApiService {
     @GET("search")
-    fun searchTrack(@Query("term") term : String, @Query("country") country : String, @Query("media") media : String): Observable<SearchTrackResponse>
+    fun searchTrack(@Query("term") term: String, @Query("country") country: String, @Query("media") media: String): Observable<SearchTrackResponse>
 }

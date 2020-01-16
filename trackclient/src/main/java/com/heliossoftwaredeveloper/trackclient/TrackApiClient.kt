@@ -21,10 +21,8 @@ class TrackApiClient(okHttp: OkHttpClient.Builder) : Interceptor, Authenticator 
         okHttp.authenticator(this)
         retrofit = Retrofit.Builder()
             .client(okHttp.build())
-            .addCallAdapterFactory(
-                RxJava2CallAdapterFactory.create())
-            .addConverterFactory(
-                GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BuildConfig.BASE_HTTP_URL)
             .build()
     }
@@ -40,12 +38,14 @@ class TrackApiClient(okHttp: OkHttpClient.Builder) : Interceptor, Authenticator 
     }
 
     override fun authenticate(route: Route?, response: Response): Request? {
-        try {
-            return response.request().newBuilder().build()
-        } catch (ex: Exception) { }
-        return null
+        return response.request().newBuilder().build()
     }
 
+    /**
+     * Function to create TrackApiService instance
+     *
+     * @return the created instance of TrackApiService
+     */
     fun getService(): TrackApiService {
         return retrofit.create(TrackApiService::class.java)
     }

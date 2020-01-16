@@ -7,7 +7,7 @@ package com.heliossoftwaredeveloper.trackclient.model
  * File that contains Data classes for search track response
  */
 
-data class SearchTrackResponse (val results : ArrayList<TrackDetailResult>, val status : String, val resultCount : Int)
+data class SearchTrackResponse (val results : ArrayList<TrackDetailResult>, val resultCount : Int)
 
 data class TrackDetailResult (val wrapperType : String?,
                               val kind : String?,
