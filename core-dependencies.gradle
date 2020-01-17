@@ -21,6 +21,8 @@ dependencies {
 
     kapt Libs.Android.lifecycleCompiler
 
+    implementation 'com.facebook.fresco:fresco:2.0.0'
+    
     implementation Libs.Android.materialDesign
 
     implementation Libs.Network.retrofit

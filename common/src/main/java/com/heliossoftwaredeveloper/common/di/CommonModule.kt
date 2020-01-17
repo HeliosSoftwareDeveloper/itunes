@@ -3,7 +3,7 @@ package com.heliossoftwaredeveloper.common.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.heliossoftwaredeveloper.common.SharedPreferencesManager
+import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

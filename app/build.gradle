@@ -32,4 +32,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':common')
     implementation project(':trackclient')
+    implementation project(':trackui')
 }

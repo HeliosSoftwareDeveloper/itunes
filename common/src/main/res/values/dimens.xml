@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- button -->
+    <dimen name="button_padding">10dp</dimen>
+    <dimen name="button_min_height">48dp</dimen>
+
+    <!-- font sizes, in multiples of 3sp -->
+    <dimen name="font_unit_1">3sp</dimen>
+    <dimen name="font_unit_2">6sp</dimen>
+    <dimen name="font_unit_2_5">8sp</dimen>
+    <dimen name="font_unit_3">9sp</dimen>
+    <dimen name="font_unit_4">12sp</dimen>
+    <dimen name="font_unit_5">15sp</dimen>
+    <dimen name="font_unit_6">18sp</dimen>
+    <dimen name="font_unit_7">24sp</dimen>
+    <dimen name="font_unit_8">24sp</dimen>
+    <dimen name="font_unit_9">27sp</dimen>
+
+    <!-- typical spacing between two views, in multiples of 8dp -->
+    <dimen name="space_unit_0_5">4dp</dimen>
+    <dimen name="space_unit_1">8dp</dimen>
+    <dimen name="space_unit_1_5">12dp</dimen>
+    <dimen name="space_unit_2">16dp</dimen>
+    <dimen name="space_unit_2_5">20dp</dimen>
+    <dimen name="space_unit_3">24dp</dimen>
+    <dimen name="space_unit_4">32dp</dimen>
+    <dimen name="space_unit_5">40dp</dimen>
+    <dimen name="space_unit_6">40dp</dimen>
+    <dimen name="space_unit_7">40dp</dimen>
+    <dimen name="space_unit_8">40dp</dimen>
+
+    <dimen name="corner_radius">25dp</dimen>
+    <dimen name="corner_radius_small">16dp</dimen>
+    <dimen name="corner_elevation">0dp</dimen>
+</resources>
