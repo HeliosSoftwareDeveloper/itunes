@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import com.heliossoftwaredeveloper.common.viewModel.BaseViewModel
+import dagger.android.support.DaggerFragment
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -18,9 +17,10 @@ import java.lang.reflect.ParameterizedType
  * @author Ruel N. Grajo on 01/16/2020.
  */
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel>  : Fragment(){
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFragment(){
     private lateinit var viewDataBinding: T
-    private var viewModel: V? = null
+
+    protected abstract val viewModel: V
 
     /**
      * Abstract function to set fragment layout
@@ -59,13 +59,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel>  : Fragment(
     fun getBinding() = viewDataBinding
 
     /**
-     * Function to get the viewModel of the current fragment
-     *
-     * @return the viewModel of the current fragment
-     */
-    fun getViewModel() = viewModel!!
-
-    /**
      * Function to get the viewModel class
      *
      * @return the viewModel class
@@ -88,29 +81,27 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel>  : Fragment(
 
     // Function to execeute the data binding
     private fun performDataBinding() {
-        viewModel = ViewModelProviders.of(this).get(getViewModelClass())
-
         viewDataBinding.setVariable(getBindingVariable(), viewModel)
         viewDataBinding.executePendingBindings()
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel?.onStart()
+        viewModel.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel?.onResume()
+        viewModel.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        viewModel?.onPause()
+        viewModel.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        viewModel?.onStop()
+        viewModel.onStop()
     }
 }

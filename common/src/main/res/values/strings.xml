@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">common</string>
+    <string name="error_network_connection">Network Connection Problem.</string>
+    <string name="error_no_track_match">Keyword does not match any track.</string>
 </resources>

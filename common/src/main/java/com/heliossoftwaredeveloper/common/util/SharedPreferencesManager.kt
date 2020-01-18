@@ -1,5 +1,5 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.common
+package com.heliossoftwaredeveloper.common.util
 
 import android.content.SharedPreferences
 

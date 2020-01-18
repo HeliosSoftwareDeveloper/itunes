@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">trackUI</string>
+    <string name="lbl_search_track">Search Movie</string>
 </resources>

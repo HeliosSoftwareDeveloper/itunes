@@ -1,6 +1,7 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.itunes
 
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.heliossoftwaredeveloper.common.di.CommonModule
 import com.heliossoftwaredeveloper.common.di.NetworkModule
 import com.heliossoftwaredeveloper.itunes.di.component.DaggerApplicationComponent
@@ -18,7 +19,7 @@ class ItunesApp : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
+        Fresco.initialize(this)
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
@@ -27,15 +28,9 @@ class ItunesApp : DaggerApplication() {
         return DaggerApplicationComponent
             .builder()
             .application(this)
-            .networkModule(
-                NetworkModule()
-            )
+            .networkModule(NetworkModule())
             .trackClientModule(TrackClientModule())
-            .commonModule(
-                CommonModule(
-                    context
-                )
-            )
+            .commonModule(CommonModule(context))
             .build()
     }
 }
