@@ -41,6 +41,6 @@ The application project also contains 4 different modules.
  &nbsp;&nbsp;
  <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_loading.png" width="30%" />
  &nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/ list_nomatch.png" width="30%" />
+<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_nomatch.png" width="30%" />
  <br /><br />
 
