@@ -41,13 +41,3 @@ android {
         }
     }
 }
-
-dependencies {
-    implementation Libs.Android.appcompat
-    implementation Libs.Android.constraintLayout
-
-    implementation Libs.Network.retrofit
-    implementation Libs.Network.retrofitRxAdapter
-    implementation Libs.RxJava.rxJava
-    implementation Libs.RxJava.rxAndroid
-}
