@@ -4,7 +4,7 @@
     <string name="lbl_cached">Recent search result for keyword \'%1s\'</string>
     <string name="lbl_by">By: %1s</string>
     <string name="lbl_release_date">&lt;b>Released Date:&lt;/b> %1s</string>
-    <string name="lbl_track_length">&lt;b>Track Length:&lt;/b> %1s asdasd asda sd asd asd asdas dasd asd</string>
+    <string name="lbl_track_length">&lt;b>Track Length:&lt;/b> %1s</string>
     <string name="lbl_track_genre">&lt;b>Genre:&lt;/b> %1s</string>
     <string name="lbl_track_price">&lt;b>Price:&lt;/b> %1s %2s</string>
 
