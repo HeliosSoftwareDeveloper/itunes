@@ -29,6 +29,11 @@ The application project also contains 4 different modules.
   <li>trackUI - module that handles the display/UI/UX of the track screens.</li>
 </ul>
 
+
+I decided to use MVVM pattern for this sample application because it uses data binding. It is easier to update the display value of the views compare to MVP.
+ It also has lesser code. One example is that, the data class can already be used to bind into the xml layout file and set display values.
+ It is also easier to create unit test since there is no UI interaction on ViewModel. The disadvantage that I noticed on MVVM is that it is harder to design the correct flow for the ViewModel.
+
 <b>App Screenshots:</b>
 
 <b>Track List Screen & Track Details Screen:</b><br />
