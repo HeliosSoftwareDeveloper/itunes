@@ -1,8 +1,15 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.common.util
 
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * File that contains extension functions
@@ -29,4 +36,59 @@ fun Fragment.navigate(supportFragmentManager: FragmentManager, containerId: Int,
         it.commit()
     }
     return this
+}
+
+/**
+ * Extension function for string to HTML tags
+ *
+ * @return the spanned string
+ */
+fun String.supportHTMLTags() : Spanned {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
+    } else {
+        @Suppress("DEPRECATION")
+        return Html.fromHtml(this)
+    }
+}
+
+/**
+ * Extension function to convert milliseconds to time display format
+ *
+ * @return the formatted time string
+ */
+fun Long.formatToDisplayTime() : String {
+    val seconds = this / 1000 % 60
+    val minutes = this / (1000 * 60) % 60
+    val hours = this / (1000 * 60 * 60)
+
+    return "$hours:$minutes:$seconds"
+}
+
+private const val DISPLAY_DATE_FORMAT = "MMM. d, yyyy"
+private const val DISPLAY_SERVER_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+
+/**
+ * Extension function to format server date format to display date format
+ *
+ * @return the formatted time string
+ */
+fun String.formatStringDate(): String {
+    return try {
+        val simpleDateFormat = SimpleDateFormat(DISPLAY_SERVER_DATE_TIME_FORMAT, Locale.getDefault())
+        simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+        SimpleDateFormat(DISPLAY_DATE_FORMAT, Locale.getDefault()).format(simpleDateFormat.parse(this)!!)
+    } catch (e: ParseException) {
+        "Not Available"
+    }
+}
+
+/**
+ * Extension function to show or hide the back button
+ *
+ * @param shouldShow flag to set if the back button should be display or not
+ */
+fun ActionBar.showBackButton(shouldShow: Boolean) {
+    this.setDisplayHomeAsUpEnabled(shouldShow)
+    this.setDisplayShowHomeEnabled(shouldShow)
 }

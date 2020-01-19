@@ -3,7 +3,9 @@ package com.heliossoftwaredeveloper.trackui.di
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.heliossoftwaredeveloper.trackui.TrackDetailsFragment
 import com.heliossoftwaredeveloper.trackui.TrackListFragment
+import com.heliossoftwaredeveloper.trackui.viewModel.TrackDetailsViewModel
 import com.heliossoftwaredeveloper.trackui.viewModel.TrackListViewModel
 import dagger.Module
 import dagger.Provides
@@ -34,4 +36,19 @@ abstract class TrackBindingModule {
         ) = ViewModelProviders.of(target, factory).get(TrackListViewModel::class.java)
     }
 
+    @ContributesAndroidInjector(
+        modules = [
+            InjectTrackDetailsViewModel::class
+        ]
+    )
+    abstract fun bindTrackDetailsFragment(): TrackDetailsFragment
+
+    @Module
+    class InjectTrackDetailsViewModel {
+        @Provides
+        internal fun provideTrackListViewModel(
+            factory: ViewModelProvider.Factory,
+            target: TrackDetailsFragment
+        ) = ViewModelProviders.of(target, factory).get(TrackDetailsViewModel::class.java)
+    }
 }

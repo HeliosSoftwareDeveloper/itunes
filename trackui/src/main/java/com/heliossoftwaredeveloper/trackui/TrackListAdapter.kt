@@ -51,6 +51,6 @@ class TrackListAdapter(val trackListAdapterListener : TrackListAdapterListener) 
     inner class TrackViewHolder(val binding: TrackItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     interface TrackListAdapterListener {
-        fun onTrackSelect(track: TrackItem)
+        fun onTrackSelect(trackItem: TrackItem)
     }
 }

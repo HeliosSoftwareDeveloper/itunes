@@ -2,9 +2,12 @@
 package com.heliossoftwaredeveloper.itunes
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.MenuItem
 import com.heliossoftwaredeveloper.common.util.navigate
+import com.heliossoftwaredeveloper.common.util.showBackButton
+import com.heliossoftwaredeveloper.trackui.TrackDetailsFragment
 import com.heliossoftwaredeveloper.trackui.TrackListFragment
+import com.heliossoftwaredeveloper.trackui.model.TrackItem
 import dagger.android.support.DaggerAppCompatActivity
 
 /**
@@ -13,14 +16,24 @@ import dagger.android.support.DaggerAppCompatActivity
  * @author Ruel N. Grajo on 01/15/2020.
  */
 
-class MainActivity : DaggerAppCompatActivity() {
-
-    var currentFragment: Fragment? = null
+class MainActivity : DaggerAppCompatActivity(), TrackListFragment.OnTrackListFragmentListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        currentFragment = TrackListFragment.newInstance().navigate(supportFragmentManager, R.id.layout_container, false)
+        TrackListFragment.newInstance().navigate(supportFragmentManager, R.id.layout_container, false)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            supportActionBar?.showBackButton(false)
+            supportFragmentManager.popBackStack()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    override fun onTrackItemClicked(trackItem: TrackItem) {
+        supportActionBar?.showBackButton(true)
+        TrackDetailsFragment.newInstance(trackItem).navigate(supportFragmentManager, R.id.layout_container, true)
     }
 }

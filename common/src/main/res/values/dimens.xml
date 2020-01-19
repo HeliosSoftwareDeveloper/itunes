@@ -32,4 +32,7 @@
     <dimen name="corner_radius">25dp</dimen>
     <dimen name="corner_radius_small">16dp</dimen>
     <dimen name="corner_elevation">0dp</dimen>
+
+    <dimen name="poster_height">250dp</dimen>
+    <dimen name="poster_width">150dp</dimen>
 </resources>

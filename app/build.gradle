@@ -14,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         debug {
@@ -33,4 +34,5 @@ dependencies {
     implementation project(':common')
     implementation project(':trackclient')
     implementation project(':trackui')
+    implementation 'com.android.support:multidex:1.0.3'
 }
