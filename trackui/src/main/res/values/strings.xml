@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">trackUI</string>
     <string name="lbl_search_track">Search Movie</string>
+    <string name="lbl_cached">Recent search result for keyword \'%1s\'</string>
 </resources>
