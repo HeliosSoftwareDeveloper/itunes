@@ -57,15 +57,20 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchCardView" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/trackRecyclerView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/trackSwipeToRefresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/space_unit_1_5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cachedLabelTextView" />
+            app:layout_constraintTop_toBottomOf="@id/cachedLabelTextView">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trackRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
