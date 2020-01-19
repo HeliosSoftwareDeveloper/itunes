@@ -54,6 +54,7 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
         trackSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
+                    trackSwipeToRefresh.isRefreshing = true
                     viewModel.searchMovie(it)
                 }
                 return false
@@ -66,6 +67,10 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
                 return false
             }
         })
+
+        trackSwipeToRefresh.setOnRefreshListener {
+            viewModel.searchMovie(sharedPreferencesManager.stringValue(LAST_KEYWORD_SEARCHED))
+        }
     }
 
     override fun subscribeUi() {
@@ -80,6 +85,7 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
         })
         viewModel.trackListResult.observe(this, Observer { result ->
             cachedLabelTextView.visibility = View.GONE
+            trackSwipeToRefresh.isRefreshing = false
             result?.run {
                 if (this.isNotEmpty()) {
                     trackListAdapter.updateDataSet(this)
