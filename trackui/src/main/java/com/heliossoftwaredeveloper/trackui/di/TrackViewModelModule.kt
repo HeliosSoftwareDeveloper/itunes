@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager
 import com.heliossoftwaredeveloper.common.viewModel.ViewModelKey
 import com.heliossoftwaredeveloper.trackclient.repository.TrackRepository
+import com.heliossoftwaredeveloper.trackui.viewModel.TrackDetailsViewModel
 import com.heliossoftwaredeveloper.trackui.viewModel.TrackListViewModel
 import dagger.Module
 import dagger.Provides
@@ -25,4 +26,10 @@ class TrackViewModelModule {
         trackRepository: TrackRepository,
         sharedPreferencesManager: SharedPreferencesManager
     ): ViewModel = TrackListViewModel(trackRepository, sharedPreferencesManager)
+
+    @Provides
+    @IntoMap
+    @ViewModelKey(TrackDetailsViewModel::class)
+    fun provideTrackDetailsViewModel(
+    ): ViewModel = TrackDetailsViewModel()
 }

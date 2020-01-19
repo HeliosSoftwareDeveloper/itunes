@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.heliossoftwaredeveloper.trackui.viewModel.TrackDetailsViewModel"/>
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/space_unit_2">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imageLoader"
+                android:layout_width="@dimen/poster_width"
+                android:layout_height="@dimen/poster_height"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/trackNameTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:placeholderImage="@drawable/ic_file_download" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/trackNameTextView"
+                style="@style/Heading.Dark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_unit_1"
+                android:layout_marginStart="@dimen/space_unit_2"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/imageLoader"
+                app:layout_constraintTop_toTopOf="@+id/imageLoader" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body.Dark"
+                android:id="@+id/trackArtistTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_unit_2"
+                android:layout_marginTop="@dimen/space_unit_0_5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/imageLoader"
+                app:layout_constraintTop_toBottomOf="@id/trackNameTextView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body.Dark"
+                android:id="@+id/releaseDateTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_unit_2"
+                android:layout_marginTop="@dimen/space_unit_0_5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/imageLoader"
+                app:layout_constraintTop_toBottomOf="@id/trackArtistTextView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body.Dark"
+                android:id="@+id/trackLengthTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_unit_2"
+                android:layout_marginTop="@dimen/space_unit_0_5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/imageLoader"
+                app:layout_constraintTop_toBottomOf="@id/releaseDateTextView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body.Dark"
+                android:id="@+id/genreTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_unit_2"
+                android:layout_marginTop="@dimen/space_unit_0_5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/imageLoader"
+                app:layout_constraintTop_toBottomOf="@id/trackLengthTextView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body.Dark"
+                android:id="@+id/priceTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_unit_2"
+                android:layout_marginTop="@dimen/space_unit_0_5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/imageLoader"
+                app:layout_constraintTop_toBottomOf="@id/genreTextView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/trackDescriptionTextView"
+                style="@style/Body.Dark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_unit_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageLoader" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,6 +1,7 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.itunes
 
+import androidx.multidex.MultiDex
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.heliossoftwaredeveloper.common.di.CommonModule
 import com.heliossoftwaredeveloper.common.di.NetworkModule
@@ -22,6 +23,7 @@ class ItunesApp : DaggerApplication() {
         super.onCreate()
         TrackDatabase.getAppDataBase(this)
         Fresco.initialize(this)
+        MultiDex.install(this)
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

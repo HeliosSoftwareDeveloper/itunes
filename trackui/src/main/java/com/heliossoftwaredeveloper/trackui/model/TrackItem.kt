@@ -1,6 +1,8 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.trackui.model
 
+import java.io.Serializable
+
 /**
  * UI data class for track details
  *
@@ -30,4 +32,4 @@ data class TrackItem (val kind : String?,
                       val primaryGenreName : String?,
                       val contentAdvisoryRating : String?,
                       val shortDescription : String?,
-                      val longDescription : String?)
+                      val longDescription : String?) : Serializable

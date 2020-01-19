@@ -1,6 +1,7 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.trackui
 
+import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
@@ -21,7 +22,7 @@ import javax.inject.Inject
  * @author Ruel N. Grajo on 01/17/2020.
  */
 
-class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewModel>(){
+class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewModel>() {
 
     @Inject
     override lateinit var viewModel: TrackListViewModel
@@ -29,10 +30,7 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
     @Inject
     lateinit var sharedPreferencesManager: SharedPreferencesManager
 
-    companion object {
-        const val SPAN_COUNT = 2
-        fun newInstance() = TrackListFragment()
-    }
+    private var mListener: OnTrackListFragmentListener? = null
 
     override fun createLayout() = R.layout.track_list_fragment
 
@@ -43,8 +41,8 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
     lateinit var trackListAdapter : TrackListAdapter
     override fun initViews() {
         trackListAdapter = TrackListAdapter(object : TrackListAdapter.TrackListAdapterListener{
-            override fun onTrackSelect(track: TrackItem) {
-
+            override fun onTrackSelect(trackItem: TrackItem) {
+                mListener?.onTrackItemClicked(trackItem)
             }
         })
         with (trackRecyclerView) {
@@ -95,6 +93,18 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
         viewModel.getTrackFromCache()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnTrackListFragmentListener) {
+            mListener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mListener = null
+    }
+
     /**
      * Function to show error message
      *
@@ -106,5 +116,22 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
             text = message
             visibility = View.VISIBLE
         }
+    }
+
+    companion object {
+        const val SPAN_COUNT = 2
+        fun newInstance() = TrackListFragment()
+    }
+
+    /**
+     * Interface to handle callbacks
+     * */
+    interface OnTrackListFragmentListener {
+        /**
+         * Function to handle list item clicked callback to class that implement it.
+         *
+         * @param trackItem the selected track item
+         * */
+        fun onTrackItemClicked(trackItem: TrackItem)
     }
 }
