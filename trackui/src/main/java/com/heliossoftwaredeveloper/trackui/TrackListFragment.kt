@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.heliossoftwaredeveloper.common.fragment.BaseFragment
 import com.heliossoftwaredeveloper.common.util.MarginItemDecoration
+import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager
+import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager.Companion.LAST_KEYWORD_SEARCHED
 import com.heliossoftwaredeveloper.trackui.databinding.TrackListFragmentBinding
 import com.heliossoftwaredeveloper.trackui.model.TrackItem
 import com.heliossoftwaredeveloper.trackui.viewModel.TrackListViewModel
@@ -23,6 +25,9 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
 
     @Inject
     override lateinit var viewModel: TrackListViewModel
+
+    @Inject
+    lateinit var sharedPreferencesManager: SharedPreferencesManager
 
     companion object {
         const val SPAN_COUNT = 2
@@ -66,7 +71,17 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
     }
 
     override fun subscribeUi() {
+        viewModel.trackListCached.observe(this, Observer { result ->
+            result?.run {
+                if (this.isNotEmpty()) {
+                    cachedLabelTextView.visibility = View.VISIBLE
+                    cachedLabelTextView.text = getString(R.string.lbl_cached, sharedPreferencesManager.stringValue(LAST_KEYWORD_SEARCHED))
+                    trackListAdapter.updateDataSet(this)
+                }
+            } ?: showErrorMessage(getString(R.string.error_database))
+        })
         viewModel.trackListResult.observe(this, Observer { result ->
+            cachedLabelTextView.visibility = View.GONE
             result?.run {
                 if (this.isNotEmpty()) {
                     trackListAdapter.updateDataSet(this)
@@ -77,6 +92,7 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
                 }
             } ?: showErrorMessage(getString(R.string.error_network_connection))
         })
+        viewModel.getTrackFromCache()
     }
 
     /**

@@ -25,6 +25,7 @@ object Versions {
     const val constraintLayout = "1.1.3"
     const val lifecycle = "2.1.0"
     const val coreKtx = "1.0.0"
+    const val room = "2.2.3"
 
     // google
     const val dagger = "2.23.2"
@@ -41,6 +42,7 @@ object Versions {
 
     // network
     const val retrofit = "2.5.0"
+    const val fresco = "2.0.0"
 }
 
 // Object that contains libraries needed by the app
@@ -62,6 +64,13 @@ object Libs {
         const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
         const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
+
+        const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+        const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+        const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+        const val roomRxJava = "androidx.room:room-rxjava2:${Versions.room}"
+        const val roomGuava = "androidx.room:room-guava:${Versions.room}"
+        const val roomTesting = "androidx.room:room-testing:${Versions.room}"
     }
 
     private object Dagger {
@@ -77,6 +86,8 @@ object Libs {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofitGSONConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
         const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+
+        const val fresco = "com.facebook.fresco:fresco:${Versions.fresco}"
     }
 
     private object RxJava {

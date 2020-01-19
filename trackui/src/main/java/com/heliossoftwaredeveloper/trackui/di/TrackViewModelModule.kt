@@ -2,6 +2,7 @@
 package com.heliossoftwaredeveloper.trackui.di
 
 import androidx.lifecycle.ViewModel
+import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager
 import com.heliossoftwaredeveloper.common.viewModel.ViewModelKey
 import com.heliossoftwaredeveloper.trackclient.repository.TrackRepository
 import com.heliossoftwaredeveloper.trackui.viewModel.TrackListViewModel
@@ -21,6 +22,7 @@ class TrackViewModelModule {
     @IntoMap
     @ViewModelKey(TrackListViewModel::class)
     fun provideTrackListViewModel(
-        trackRepository: TrackRepository
-    ): ViewModel = TrackListViewModel(trackRepository)
+        trackRepository: TrackRepository,
+        sharedPreferencesManager: SharedPreferencesManager
+    ): ViewModel = TrackListViewModel(trackRepository, sharedPreferencesManager)
 }

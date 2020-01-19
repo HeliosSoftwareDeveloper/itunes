@@ -15,14 +15,11 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     open fun onResume() {
-
     }
 
     open fun onPause() {
-
     }
 
     open fun onStop() {
-
     }
 }

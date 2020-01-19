@@ -36,13 +36,23 @@
                 app:layout_constraintVertical_chainStyle="packed"/>
         </androidx.cardview.widget.CardView>
 
-
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/Heading.Dark"
             android:id="@+id/invalidResultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchCardView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Heading.Dark"
+            android:id="@+id/cachedLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_unit_1_5"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchCardView" />
@@ -55,7 +65,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchCardView" />
+            app:layout_constraintTop_toBottomOf="@id/cachedLabelTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

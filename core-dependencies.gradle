@@ -21,7 +21,7 @@ dependencies {
 
     kapt Libs.Android.lifecycleCompiler
 
-    implementation 'com.facebook.fresco:fresco:2.0.0'
+    implementation Libs.Network.fresco
     
     implementation Libs.Android.materialDesign
 
@@ -38,6 +38,16 @@ dependencies {
 
     kapt Libs.Dagger.processor
     kapt Libs.Dagger.compiler
+
+    implementation Libs.Android.roomRuntime
+    kapt Libs.Android.roomCompiler
+
+    implementation Libs.Android.roomKtx
+    implementation Libs.Android.roomRxJava
+    implementation Libs.Android.roomGuava
+
+    // Test helpers
+    testImplementation Libs.Android.roomTesting
 
     testImplementation Libs.Test.jUnit
     androidTestImplementation Libs.Test.testRunner
