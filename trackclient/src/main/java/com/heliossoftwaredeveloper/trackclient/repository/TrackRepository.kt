@@ -6,8 +6,6 @@ import com.heliossoftwaredeveloper.trackclient.TrackApiClient
 import com.heliossoftwaredeveloper.trackclient.db.TrackEntity
 import com.heliossoftwaredeveloper.trackclient.model.SearchTrackResponse
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 /**
  * Repository class for Track related stuff

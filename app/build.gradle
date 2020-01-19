@@ -34,5 +34,5 @@ dependencies {
     implementation project(':common')
     implementation project(':trackclient')
     implementation project(':trackui')
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation Libs.Android.multiDexSupport
 }

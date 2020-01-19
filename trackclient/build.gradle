@@ -1,5 +1,19 @@
 apply from: "$rootDir/android-module-base.gradle"
 
+android {
+    sourceSets {
+        test {
+            resources.srcDirs += ['src/test/res']
+        }
+        androidTest {
+            resources.srcDirs += ['src/androidTest/res']
+        }
+    }
+}
+
 dependencies {
     implementation project(':common')
+
+    testImplementation "org.mockito:mockito-core:2.24.0"
+    testImplementation 'org.mockito:mockito-inline:2.24.0'
 }

@@ -26,6 +26,7 @@ object Versions {
     const val lifecycle = "2.1.0"
     const val coreKtx = "1.0.0"
     const val room = "2.2.3"
+    const val multidex = "1.0.3"
 
     // google
     const val dagger = "2.23.2"
@@ -71,6 +72,8 @@ object Libs {
         const val roomRxJava = "androidx.room:room-rxjava2:${Versions.room}"
         const val roomGuava = "androidx.room:room-guava:${Versions.room}"
         const val roomTesting = "androidx.room:room-testing:${Versions.room}"
+
+        const val multiDexSupport = "com.android.support:multidex:${Versions.multidex}"
     }
 
     private object Dagger {
