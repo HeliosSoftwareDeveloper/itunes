@@ -74,16 +74,7 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
     }
 
     override fun subscribeUi() {
-        viewModel.trackListCached.observe(this, Observer { result ->
-            result?.run {
-                if (this.isNotEmpty()) {
-                    cachedLabelTextView.visibility = View.VISIBLE
-                    cachedLabelTextView.text = getString(R.string.lbl_cached, sharedPreferencesManager.stringValue(LAST_KEYWORD_SEARCHED))
-                    trackListAdapter.updateDataSet(this)
-                }
-            } ?: showErrorMessage(getString(R.string.error_database))
-        })
-        viewModel.trackListResult.observe(this, Observer { result ->
+        viewModel.trackListResult.observe(viewLifecycleOwner, Observer { result ->
             cachedLabelTextView.visibility = View.GONE
             trackSwipeToRefresh.isRefreshing = false
             result?.run {
@@ -96,6 +87,19 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
                 }
             } ?: showErrorMessage(getString(R.string.error_network_connection))
         })
+
+        viewModel.trackListCached.observe(viewLifecycleOwner, Observer { result ->
+            if (trackListAdapter.itemCount <= 0) {
+                result?.run {
+                    if (this.isNotEmpty()) {
+                        cachedLabelTextView.visibility = View.VISIBLE
+                        cachedLabelTextView.text = getString(R.string.lbl_cached, sharedPreferencesManager.stringValue(LAST_KEYWORD_SEARCHED))
+                        trackListAdapter.updateDataSet(this)
+                    }
+                } ?: showErrorMessage(getString(R.string.error_database))
+            }
+        })
+
         viewModel.getTrackFromCache()
     }
 

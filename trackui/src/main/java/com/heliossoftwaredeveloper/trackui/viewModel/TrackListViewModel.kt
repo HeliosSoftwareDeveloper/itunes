@@ -8,6 +8,9 @@ import com.heliossoftwaredeveloper.common.viewModel.BaseViewModel
 import com.heliossoftwaredeveloper.trackclient.model.SearchTrackResponse
 import com.heliossoftwaredeveloper.trackclient.repository.TrackRepository
 import com.heliossoftwaredeveloper.trackui.model.TrackItem
+import com.heliossoftwaredeveloper.trackui.util.entityModelToTrackItem
+import com.heliossoftwaredeveloper.trackui.util.serviceModelToTrackEntity
+import com.heliossoftwaredeveloper.trackui.util.serviceModelToTrackItem
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -44,44 +47,10 @@ class TrackListViewModel @Inject constructor(
         trackSearchDisposable = trackRepository.searchTrack(keyword, DEFAULT_COUNTRY, DEFAULT_MEDIA)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { it?.saveTrackResponse(keyword) }
             .subscribe(
                 { result ->
-                    // Save the keyword to shared preference
-                    sharedPreferencesManager.stringValue(SharedPreferencesManager.LAST_KEYWORD_SEARCHED, keyword)
-
-                    // Save the keyword search result to database
-                    saveTrackResponse(result)
-
-                    _trackListResult.postValue(
-                        result.results.map {
-                            TrackItem(
-                                kind = it.kind,
-                                trackId = it.trackId,
-                                artistName = it.artistName,
-                                collectionName = it.collectionName,
-                                trackName = it.trackName,
-                                artworkUrl = it.artworkUrl100,
-                                collectionPrice = it.collectionPrice,
-                                trackPrice = it.trackPrice,
-                                trackRentalPrice = it.trackRentalPrice,
-                                collectionHdPrice = it.collectionHdPrice,
-                                trackHdPrice = it.trackHdPrice,
-                                trackHdRentalPrice = it.trackHdRentalPrice,
-                                releaseDate = it.releaseDate,
-                                collectionExplicitness = it.collectionExplicitness,
-                                trackExplicitness = it.trackExplicitness,
-                                trackCount = it.trackCount,
-                                trackNumber = it.trackNumber,
-                                trackTimeMillis = it.trackTimeMillis,
-                                country = it.country,
-                                currency = it.currency,
-                                primaryGenreName = it.primaryGenreName,
-                                contentAdvisoryRating = it.contentAdvisoryRating,
-                                shortDescription = it.shortDescription,
-                                longDescription = it.longDescription
-                            )
-                        }
-                    )
+                    _trackListResult.postValue(result.results.serviceModelToTrackItem())
                     trackSearchDisposable?.dispose()
                 },
                 {
@@ -92,15 +61,20 @@ class TrackListViewModel @Inject constructor(
     }
 
     /**
-     * Function to execute save searched track on track-repository
+     * Extension Function to execute save searched track on track-repository
      *
      * @param keyword the keyword of track that the user is looking for.
      */
-    private fun saveTrackResponse(searchTrackResponse: SearchTrackResponse) {
-        saveTrackDisposable = Observable.fromCallable {trackRepository.saveSearchTrack(searchTrackResponse)}
+    private fun SearchTrackResponse.saveTrackResponse(keyword: String) {
+        saveTrackDisposable = Observable.fromCallable {
+            // Save the keyword to shared preference
+            sharedPreferencesManager.stringValue(SharedPreferencesManager.LAST_KEYWORD_SEARCHED, keyword)
+            // Save the search response to database
+            trackRepository.saveSearchTrack(this.results.serviceModelToTrackEntity())
+        }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{
+            .subscribe {
                 saveTrackDisposable?.dispose()
             }
     }
@@ -114,36 +88,7 @@ class TrackListViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
-                    _trackListCached.postValue(
-                        result.map {
-                            TrackItem(
-                                kind = it.kind,
-                                trackId = it.trackId,
-                                artistName = it.artistName,
-                                collectionName = it.collectionName,
-                                trackName = it.trackName,
-                                artworkUrl = it.artworkUrl,
-                                collectionPrice = it.collectionPrice,
-                                trackPrice = it.trackPrice,
-                                trackRentalPrice = it.trackRentalPrice,
-                                collectionHdPrice = it.collectionHdPrice,
-                                trackHdPrice = it.trackHdPrice,
-                                trackHdRentalPrice = it.trackHdRentalPrice,
-                                releaseDate = it.releaseDate,
-                                collectionExplicitness = it.collectionExplicitness,
-                                trackExplicitness = it.trackExplicitness,
-                                trackCount = it.trackCount,
-                                trackNumber = it.trackNumber,
-                                trackTimeMillis = it.trackTimeMillis,
-                                country = it.country,
-                                currency = it.currency,
-                                primaryGenreName = it.primaryGenreName,
-                                contentAdvisoryRating = it.contentAdvisoryRating,
-                                shortDescription = it.shortDescription,
-                                longDescription = it.longDescription
-                            )
-                        }
-                    )
+                    _trackListCached.postValue(result.entityModelToTrackItem())
                     trackCachedDisposable?.dispose()
                 },
                 {

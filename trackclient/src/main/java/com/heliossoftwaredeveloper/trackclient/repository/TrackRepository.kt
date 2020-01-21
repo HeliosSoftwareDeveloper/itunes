@@ -34,8 +34,10 @@ interface TrackRepository {
 
     /**
      * Function to save the searched tracks into the database
+     *
+     * @param trackList the list of track entity to save in database.
      */
-    fun saveSearchTrack(searchTrackResponse: SearchTrackResponse)
+    fun saveSearchTrack(trackList: List<TrackEntity>)
 }
 
 class TrackRepositoryImpl(private val apiClient: TrackApiClient): TrackRepository {
@@ -48,36 +50,8 @@ class TrackRepositoryImpl(private val apiClient: TrackApiClient): TrackRepositor
         return TrackDatabase.INSTANCE?.trackDao()?.getAllTracks() ?: Observable.just(emptyList())
     }
 
-    override fun saveSearchTrack(searchTrackResponse: SearchTrackResponse) {
+    override fun saveSearchTrack(trackList: List<TrackEntity>) {
         TrackDatabase.INSTANCE?.trackDao()?.deleteTracks()
-        TrackDatabase.INSTANCE?.trackDao()?.saveTracks(searchTrackResponse.results.map {
-            TrackEntity(
-                id = 0,
-                kind = it.kind,
-                trackId = it.trackId,
-                artistName = it.artistName,
-                collectionName = it.collectionName,
-                trackName = it.trackName,
-                artworkUrl = it.artworkUrl100,
-                collectionPrice = it.collectionPrice,
-                trackPrice = it.trackPrice,
-                trackRentalPrice = it.trackRentalPrice,
-                collectionHdPrice = it.collectionHdPrice,
-                trackHdPrice = it.trackHdPrice,
-                trackHdRentalPrice = it.trackHdRentalPrice,
-                releaseDate = it.releaseDate,
-                collectionExplicitness = it.collectionExplicitness,
-                trackExplicitness = it.trackExplicitness,
-                trackCount = it.trackCount,
-                trackNumber = it.trackNumber,
-                trackTimeMillis = it.trackTimeMillis,
-                country = it.country,
-                currency = it.currency,
-                primaryGenreName = it.primaryGenreName,
-                contentAdvisoryRating = it.contentAdvisoryRating,
-                shortDescription = it.shortDescription,
-                longDescription = it.longDescription
-            )
-        })
+        TrackDatabase.INSTANCE?.trackDao()?.saveTracks(trackList)
     }
 }
