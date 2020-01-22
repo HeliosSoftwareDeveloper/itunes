@@ -37,7 +37,7 @@ interface TrackRepository {
      *
      * @param trackList the list of track entity to save in database.
      */
-    fun saveSearchTrack(trackList: List<TrackEntity>)
+    fun saveSearchTrack(trackList: List<TrackEntity>): Observable<Unit>
 }
 
 class TrackRepositoryImpl(private val apiClient: TrackApiClient): TrackRepository {
@@ -50,8 +50,10 @@ class TrackRepositoryImpl(private val apiClient: TrackApiClient): TrackRepositor
         return TrackDatabase.INSTANCE?.trackDao()?.getAllTracks() ?: Observable.just(emptyList())
     }
 
-    override fun saveSearchTrack(trackList: List<TrackEntity>) {
-        TrackDatabase.INSTANCE?.trackDao()?.deleteTracks()
-        TrackDatabase.INSTANCE?.trackDao()?.saveTracks(trackList)
+    override fun saveSearchTrack(trackList: List<TrackEntity>): Observable<Unit> {
+        return Observable.fromCallable {
+            TrackDatabase.INSTANCE?.trackDao()?.deleteTracks()
+            TrackDatabase.INSTANCE?.trackDao()?.saveTracks(trackList)
+        }
     }
 }
