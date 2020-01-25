@@ -30,12 +30,11 @@ The application project also contains 5 different modules.
   <li>appDB - module that handles the local database of the application.</li>
 </ul>
 
+Here is the latest released APK build of the app: https://drive.google.com/open?id=18HrxiLA5j7iPNNYCO8z9fmtxdM9h39r0
 
 I decided to use MVVM pattern for this sample application because it uses data binding. It is easier to update the display value of the views compare to MVP.
  It also has lesser code. One example is that, the data class can already be used to bind into the xml layout file and set display values.
  It is also easier to create unit test since there is no UI interaction on ViewModel. The disadvantage that I noticed on MVVM is that it is harder to design the correct flow for the ViewModel.
-
-Here is the latest released APK build of the app: https://drive.google.com/open?id=1N3-5eqWuk5TF_g3XdZQRnCHaAsWharnS
 
 <b>App Screenshots:</b>
 
