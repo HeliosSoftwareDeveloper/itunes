@@ -20,13 +20,14 @@ Sample Application to demonstrate MVVM with repository pattern that uses Dagger,
   <li>SearchView (Android Support)</li>
 </ul>
 
-The application project also contains 4 different modules.
+The application project also contains 5 different modules.
 
 <ul>
   <li>buildSrc - module that holds build specific classes. Currently it only have the Dependencies class. The Dependencies class contains library names and versions object that is used on gradle files</li>
   <li>common - module that contains shared function, interface, classes & resources.</li>
   <li>trackClient - module that handles the API & database transaction.</li>
   <li>trackUI - module that handles the display/UI/UX of the track screens.</li>
+  <li>appDB - module that handles the local database of the application.</li>
 </ul>
 
 
