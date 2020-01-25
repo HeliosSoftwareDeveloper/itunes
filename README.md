@@ -41,7 +41,7 @@ Here is the latest released APK build of the app: https://drive.google.com/open?
 
 <b>Track List Screen & Track Details Screen:</b><br />
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_searching.png" width="30%" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/track_details.png" width="30%" />
+<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/track_details_new.png" width="30%" />
  <br /><br />
 
 <b>Track List Screen (Cached Data), Track List Screen (Loading), & Track List Screen (No keyword match):</b><br />
@@ -49,6 +49,6 @@ Here is the latest released APK build of the app: https://drive.google.com/open?
  &nbsp;&nbsp;
  <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_loading.png" width="30%" />
  &nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_nomatch.png" width="30%" />
+<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_nomatch_new.png" width="30%" />
  <br /><br />
 

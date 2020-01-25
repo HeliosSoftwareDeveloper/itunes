@@ -100,6 +100,7 @@ class TrackListViewModel @Inject constructor(
                 },
                 {
                     _errorMessage.postValue(R.string.error_network_connection)
+                    _trackListResult.postValue(emptyList())
                     trackSearchDisposable?.safeDispose()
                 }
             )
