@@ -34,6 +34,8 @@ I decided to use MVVM pattern for this sample application because it uses data b
  It also has lesser code. One example is that, the data class can already be used to bind into the xml layout file and set display values.
  It is also easier to create unit test since there is no UI interaction on ViewModel. The disadvantage that I noticed on MVVM is that it is harder to design the correct flow for the ViewModel.
 
+Here is the latest released APK build of the app: https://drive.google.com/open?id=1N3-5eqWuk5TF_g3XdZQRnCHaAsWharnS
+
 <b>App Screenshots:</b>
 
 <b>Track List Screen & Track Details Screen:</b><br />
