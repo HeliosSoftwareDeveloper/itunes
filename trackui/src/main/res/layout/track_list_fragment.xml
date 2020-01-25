@@ -41,6 +41,8 @@
             android:id="@+id/invalidResultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_action_error"
+            android:drawablePadding="@dimen/space_unit_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
