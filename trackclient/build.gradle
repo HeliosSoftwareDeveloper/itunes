@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation project(':common')
+    implementation project(':appDB')
 
     testImplementation "org.mockito:mockito-core:2.24.0"
     testImplementation 'org.mockito:mockito-inline:2.24.0'

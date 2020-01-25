@@ -1,8 +1,9 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.trackclient.db
+package com.heliossoftwaredeveloper.applicationdatabase.dao
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
+import com.heliossoftwaredeveloper.applicationdatabase.entity.TrackEntity
 import io.reactivex.Observable
 
 /**

@@ -1,5 +1,5 @@
 /* (c) Helios Software Developer. All rights reserved. */
-package com.heliossoftwaredeveloper.trackclient.db
+package com.heliossoftwaredeveloper.applicationdatabase.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -34,5 +34,6 @@ dependencies {
     implementation project(':common')
     implementation project(':trackclient')
     implementation project(':trackui')
+    implementation project(':appDB')
     implementation Libs.Android.multiDexSupport
 }
