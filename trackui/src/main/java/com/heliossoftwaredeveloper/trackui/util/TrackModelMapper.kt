@@ -1,7 +1,7 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.trackui.util
 
-import com.heliossoftwaredeveloper.trackclient.db.TrackEntity
+import com.heliossoftwaredeveloper.applicationdatabase.entity.TrackEntity
 import com.heliossoftwaredeveloper.trackclient.model.TrackDetailResult
 import com.heliossoftwaredeveloper.trackui.model.TrackItem
 

@@ -5,8 +5,8 @@ import androidx.multidex.MultiDex
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.heliossoftwaredeveloper.common.di.CommonModule
 import com.heliossoftwaredeveloper.common.di.NetworkModule
+import com.heliossoftwaredeveloper.applicationdatabase.di.DatabaseModule
 import com.heliossoftwaredeveloper.itunes.di.component.DaggerApplicationComponent
-import com.heliossoftwaredeveloper.storefinder.Store.Storage.TrackDatabase
 import com.heliossoftwaredeveloper.trackclient.di.TrackClientModule
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
@@ -21,7 +21,6 @@ class ItunesApp : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        TrackDatabase.getAppDataBase(this)
         Fresco.initialize(this)
         MultiDex.install(this)
     }
@@ -35,6 +34,7 @@ class ItunesApp : DaggerApplication() {
             .networkModule(NetworkModule())
             .trackClientModule(TrackClientModule())
             .commonModule(CommonModule(context))
+            .databaseModule(DatabaseModule(this))
             .build()
     }
 }
