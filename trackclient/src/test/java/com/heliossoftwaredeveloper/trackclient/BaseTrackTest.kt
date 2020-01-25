@@ -2,7 +2,7 @@
 package com.heliossoftwaredeveloper.trackclient
 
 import com.google.gson.Gson
-import com.heliossoftwaredeveloper.applicationdatabase.TrackEntity
+import com.heliossoftwaredeveloper.applicationdatabase.entity.TrackEntity
 import com.heliossoftwaredeveloper.trackclient.model.SearchTrackResponse
 import java.io.BufferedReader
 import java.io.FileReader
@@ -47,8 +47,8 @@ open class BaseTrackTest {
      *
      * @return List<TrackEntity> valid mock trackList entity
      * */
-    fun validTrackEntityList() : List<com.heliossoftwaredeveloper.applicationdatabase.TrackEntity> {
-        val trackEntity = com.heliossoftwaredeveloper.applicationdatabase.TrackEntity(
+    fun validTrackEntityList() : List<TrackEntity> {
+        val trackEntity = TrackEntity(
             id = 0,
             kind = "feature-movie",
             trackId = 975080816,
