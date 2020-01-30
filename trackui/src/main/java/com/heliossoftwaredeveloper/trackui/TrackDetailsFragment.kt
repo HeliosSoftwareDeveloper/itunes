@@ -2,6 +2,7 @@
 package com.heliossoftwaredeveloper.trackui
 
 import android.os.Bundle
+import android.view.View
 import com.heliossoftwaredeveloper.common.fragment.BaseFragment
 import com.heliossoftwaredeveloper.common.util.formatStringDate
 import com.heliossoftwaredeveloper.common.util.formatToDisplayTime
@@ -47,6 +48,7 @@ class TrackDetailsFragment : BaseFragment<TrackDetailsFragmentBinding, TrackDeta
     fun updateContent(trackItem: TrackItem?) {
         selectedTrackItem = trackItem
         selectedTrackItem?.run {
+            trackDetailsContainer.visibility = View.VISIBLE
             imageLoader.setImageURI(this.artworkUrl)
             imageBackgroundLoader.setImageURI(this.artworkUrl)
             imageBackgroundLoader.imageAlpha = 100
