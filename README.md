@@ -18,6 +18,7 @@ Sample Application to demonstrate MVVM with repository pattern that uses Dagger,
   <li>ConstraintLayout (Android Support)</li>
   <li>CardView (Android Support)</li>
   <li>SearchView (Android Support)</li>
+  <li>Single-pane and Multi-pane Layouts</li>
 </ul>
 
 The application project also contains 5 different modules.
@@ -38,16 +39,22 @@ I decided to use MVVM pattern for this sample application because it uses data b
 
 <b>App Screenshots:</b>
 
-<b>Track List Screen & Track Details Screen:</b><br />
+<b>Mobile Phone: Track List Screen & Track Details Screen:</b><br />
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_searching.png" width="30%" />&nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/track_details_new.png" width="30%" />
  <br /><br />
 
-<b>Track List Screen (Cached Data), Track List Screen (Loading), & Track List Screen (No keyword match):</b><br />
+<b>Mobile Phone: Track List Screen (Cached Data), Track List Screen (Loading), & Track List Screen (No keyword match):</b><br />
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_cache.png" width="30%" />
  &nbsp;&nbsp;
  <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_loading.png" width="30%" />
  &nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_nomatch_new.png" width="30%" />
  <br /><br />
+
+ <b>Table: Track list & details on single screen.</b><br />
+ <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/tablet_1.png" width="30%" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/tablet_2.png" width="50%" />
+  <br /><br />
 

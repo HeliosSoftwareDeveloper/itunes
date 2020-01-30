@@ -3,12 +3,14 @@ package com.heliossoftwaredeveloper.itunes
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.FrameLayout
 import com.heliossoftwaredeveloper.common.util.navigate
 import com.heliossoftwaredeveloper.common.util.showBackButton
 import com.heliossoftwaredeveloper.trackui.TrackDetailsFragment
 import com.heliossoftwaredeveloper.trackui.TrackListFragment
 import com.heliossoftwaredeveloper.trackui.model.TrackItem
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Main Activity Class
@@ -22,7 +24,9 @@ class MainActivity : DaggerAppCompatActivity(), TrackListFragment.OnTrackListFra
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        TrackListFragment.newInstance().navigate(supportFragmentManager, R.id.layout_container, false)
+        if (layout_container is FrameLayout) {
+            TrackListFragment.newInstance().navigate(supportFragmentManager, R.id.layout_container, false)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -39,7 +43,14 @@ class MainActivity : DaggerAppCompatActivity(), TrackListFragment.OnTrackListFra
     }
 
     override fun onTrackItemClicked(trackItem: TrackItem) {
-        supportActionBar?.showBackButton(true)
-        TrackDetailsFragment.newInstance(trackItem).navigate(supportFragmentManager, R.id.layout_container, true)
+
+        val trackDetailsFragment: TrackDetailsFragment? = supportFragmentManager.findFragmentById(R.id.layout_container_details) as TrackDetailsFragment?
+
+        if (trackDetailsFragment == null) {
+            supportActionBar?.showBackButton(true)
+            TrackDetailsFragment.newInstance(trackItem).navigate(supportFragmentManager, R.id.layout_container, true)
+        } else {
+            trackDetailsFragment.updateContent(trackItem)
+        }
     }
 }

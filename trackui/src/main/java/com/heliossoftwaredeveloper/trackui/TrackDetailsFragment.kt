@@ -39,6 +39,13 @@ class TrackDetailsFragment : BaseFragment<TrackDetailsFragmentBinding, TrackDeta
     override fun initData() {}
 
     override fun initViews() {
+        updateContent(selectedTrackItem)
+    }
+
+    override fun subscribeUi() {}
+
+    fun updateContent(trackItem: TrackItem?) {
+        selectedTrackItem = trackItem
         selectedTrackItem?.run {
             imageLoader.setImageURI(this.artworkUrl)
             imageBackgroundLoader.setImageURI(this.artworkUrl)
@@ -61,8 +68,6 @@ class TrackDetailsFragment : BaseFragment<TrackDetailsFragmentBinding, TrackDeta
             trackDescriptionTextView.text = this.longDescription
         }
     }
-
-    override fun subscribeUi() {}
 
     companion object {
         private const val ARG_PARAM_ITEM = "argParamTrackItem"
