@@ -52,8 +52,8 @@ I decided to use MVVM pattern for this sample application because it uses data b
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_nomatch_new.png" width="30%" />
  <br /><br />
 
- <b>Table: Track list & details on single screen.</b><br />
- <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/tablet_1.png" width="30%" />
+ <b>Tablet: Track list & details on single screen.</b><br />
+ <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/tablet_1.png" width="50%" />
   &nbsp;&nbsp;
   <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/tablet_2.png" width="50%" />
   <br /><br />
