@@ -20,15 +20,17 @@ Sample Application to demonstrate MVVM with repository pattern that uses Dagger,
   <li>SearchView (Android Support)</li>
 </ul>
 
-The application project also contains 4 different modules.
+The application project also contains 5 different modules.
 
 <ul>
   <li>buildSrc - module that holds build specific classes. Currently it only have the Dependencies class. The Dependencies class contains library names and versions object that is used on gradle files</li>
   <li>common - module that contains shared function, interface, classes & resources.</li>
   <li>trackClient - module that handles the API & database transaction.</li>
   <li>trackUI - module that handles the display/UI/UX of the track screens.</li>
+  <li>appDB - module that handles the local database of the application.</li>
 </ul>
 
+Here is the latest released APK build of the app: https://drive.google.com/open?id=18HrxiLA5j7iPNNYCO8z9fmtxdM9h39r0
 
 I decided to use MVVM pattern for this sample application because it uses data binding. It is easier to update the display value of the views compare to MVP.
  It also has lesser code. One example is that, the data class can already be used to bind into the xml layout file and set display values.
@@ -38,7 +40,7 @@ I decided to use MVVM pattern for this sample application because it uses data b
 
 <b>Track List Screen & Track Details Screen:</b><br />
 <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_searching.png" width="30%" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/track_details.png" width="30%" />
+<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/track_details_new.png" width="30%" />
  <br /><br />
 
 <b>Track List Screen (Cached Data), Track List Screen (Loading), & Track List Screen (No keyword match):</b><br />
@@ -46,6 +48,6 @@ I decided to use MVVM pattern for this sample application because it uses data b
  &nbsp;&nbsp;
  <img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_loading.png" width="30%" />
  &nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_nomatch.png" width="30%" />
+<img src="https://raw.githubusercontent.com/HeliosSoftwareDeveloper/itunes/master/screenshots/list_nomatch_new.png" width="30%" />
  <br /><br />
 

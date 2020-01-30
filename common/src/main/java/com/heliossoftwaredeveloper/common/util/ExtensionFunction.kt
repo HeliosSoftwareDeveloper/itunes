@@ -4,9 +4,12 @@ package com.heliossoftwaredeveloper.common.util
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.view.View
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import io.reactivex.disposables.Disposable
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -94,3 +97,27 @@ fun ActionBar.showBackButton(shouldShow: Boolean) {
     this.setDisplayHomeAsUpEnabled(shouldShow)
     this.setDisplayShowHomeEnabled(shouldShow)
 }
+
+/**
+ * Extension function to set the text value of textView. It also set the visibility depending on the message value
+ *
+ * @param message the informative message to display
+ */
+fun AppCompatTextView.setLabelWithVisibility(message: String?) {
+    with(this) {
+        visibility = message?.let {
+            text = message
+            View.VISIBLE
+        } ?: View.GONE
+    }
+}
+
+/**
+ * Extension function to handle rxJava disposal safely
+ *
+ * @return boolean object to state the result of safe dispose
+ */
+fun Disposable?.safeDispose() = if (this != null && !isDisposed) {
+    dispose()
+    true
+} else false

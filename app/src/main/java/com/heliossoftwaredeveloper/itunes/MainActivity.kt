@@ -32,6 +32,12 @@ class MainActivity : DaggerAppCompatActivity(), TrackListFragment.OnTrackListFra
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportActionBar?.showBackButton(false)
+    }
+
     override fun onTrackItemClicked(trackItem: TrackItem) {
         supportActionBar?.showBackButton(true)
         TrackDetailsFragment.newInstance(trackItem).navigate(supportFragmentManager, R.id.layout_container, true)

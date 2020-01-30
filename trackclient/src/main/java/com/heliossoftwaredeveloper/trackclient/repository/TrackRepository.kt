@@ -1,9 +1,9 @@
 /* (c) Helios Software Developer. All rights reserved. */
 package com.heliossoftwaredeveloper.trackclient.repository
 
-import com.heliossoftwaredeveloper.storefinder.Store.Storage.TrackDatabase
+import com.heliossoftwaredeveloper.applicationdatabase.dao.TrackDao
+import com.heliossoftwaredeveloper.applicationdatabase.entity.TrackEntity
 import com.heliossoftwaredeveloper.trackclient.TrackApiClient
-import com.heliossoftwaredeveloper.trackclient.db.TrackEntity
 import com.heliossoftwaredeveloper.trackclient.model.SearchTrackResponse
 import io.reactivex.Observable
 
@@ -37,21 +37,23 @@ interface TrackRepository {
      *
      * @param trackList the list of track entity to save in database.
      */
-    fun saveSearchTrack(trackList: List<TrackEntity>)
+    fun saveSearchTrack(trackList: List<TrackEntity>): Observable<Unit>
 }
 
-class TrackRepositoryImpl(private val apiClient: TrackApiClient): TrackRepository {
+class TrackRepositoryImpl(private val apiClient: TrackApiClient, private val trackDao: TrackDao): TrackRepository {
 
     override fun searchTrack(term: String, country: String, media: String): Observable<SearchTrackResponse> {
         return apiClient.getService().searchTrack(term, country, media)
     }
 
     override fun getLastSearchTrack(): Observable<List<TrackEntity>> {
-        return TrackDatabase.INSTANCE?.trackDao()?.getAllTracks() ?: Observable.just(emptyList())
+        return trackDao.getAllTracks()
     }
 
-    override fun saveSearchTrack(trackList: List<TrackEntity>) {
-        TrackDatabase.INSTANCE?.trackDao()?.deleteTracks()
-        TrackDatabase.INSTANCE?.trackDao()?.saveTracks(trackList)
+    override fun saveSearchTrack(trackList: List<TrackEntity>): Observable<Unit> {
+        return Observable.fromCallable {
+            trackDao.deleteTracks()
+            trackDao.saveTracks(trackList)
+        }
     }
 }

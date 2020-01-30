@@ -2,14 +2,12 @@
 package com.heliossoftwaredeveloper.trackui
 
 import android.content.Context
-import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.heliossoftwaredeveloper.common.fragment.BaseFragment
 import com.heliossoftwaredeveloper.common.util.MarginItemDecoration
-import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager
-import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager.Companion.LAST_KEYWORD_SEARCHED
+import com.heliossoftwaredeveloper.common.util.setLabelWithVisibility
 import com.heliossoftwaredeveloper.trackui.databinding.TrackListFragmentBinding
 import com.heliossoftwaredeveloper.trackui.model.TrackItem
 import com.heliossoftwaredeveloper.trackui.viewModel.TrackListViewModel
@@ -22,13 +20,10 @@ import javax.inject.Inject
  * @author Ruel N. Grajo on 01/17/2020.
  */
 
-class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewModel>() {
+class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewModel>(), SearchView.OnQueryTextListener {
 
     @Inject
     override lateinit var viewModel: TrackListViewModel
-
-    @Inject
-    lateinit var sharedPreferencesManager: SharedPreferencesManager
 
     private var mListener: OnTrackListFragmentListener? = null
 
@@ -38,7 +33,8 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
 
     override fun initData() {}
 
-    lateinit var trackListAdapter : TrackListAdapter
+    private lateinit var trackListAdapter : TrackListAdapter
+
     override fun initViews() {
         trackListAdapter = TrackListAdapter(object : TrackListAdapter.TrackListAdapterListener{
             override fun onTrackSelect(trackItem: TrackItem) {
@@ -51,56 +47,33 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
             addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.space_unit_2).toInt(), SPAN_COUNT))
         }
 
-        trackSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let {
-                    trackSwipeToRefresh.isRefreshing = true
-                    viewModel.searchMovie(it)
-                }
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
-                    invalidResultTextView.visibility = View.GONE
-                }
-                return false
-            }
-        })
+        trackSearchView.setOnQueryTextListener(this)
 
         trackSwipeToRefresh.setOnRefreshListener {
-            viewModel.searchMovie(sharedPreferencesManager.stringValue(LAST_KEYWORD_SEARCHED))
+            viewModel.searchMovie(null)
         }
     }
 
     override fun subscribeUi() {
-        viewModel.trackListResult.observe(viewLifecycleOwner, Observer { result ->
-            cachedLabelTextView.visibility = View.GONE
-            trackSwipeToRefresh.isRefreshing = false
-            result?.run {
-                if (this.isNotEmpty()) {
-                    trackListAdapter.updateDataSet(this)
-                    invalidResultTextView.visibility = View.GONE
-                }
-                else {
-                    showErrorMessage(getString(R.string.error_no_track_match))
-                }
-            } ?: showErrorMessage(getString(R.string.error_network_connection))
-        })
-
-        viewModel.trackListCached.observe(viewLifecycleOwner, Observer { result ->
-            if (trackListAdapter.itemCount <= 0) {
-                result?.run {
-                    if (this.isNotEmpty()) {
-                        cachedLabelTextView.visibility = View.VISIBLE
-                        cachedLabelTextView.text = getString(R.string.lbl_cached, sharedPreferencesManager.stringValue(LAST_KEYWORD_SEARCHED))
-                        trackListAdapter.updateDataSet(this)
-                    }
-                } ?: showErrorMessage(getString(R.string.error_database))
-            }
-        })
-
-        viewModel.getTrackFromCache()
+        with (viewModel) {
+            errorMessage.observe(viewLifecycleOwner, Observer { messageId ->
+                invalidResultTextView.setLabelWithVisibility(messageId?.let {
+                    getString(messageId)
+                })
+            })
+            cacheLabel.observe(viewLifecycleOwner, Observer { label ->
+                cachedLabelTextView.setLabelWithVisibility(label?.let {
+                    getString(it.first, it.second)
+                })
+            })
+            isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+                trackSwipeToRefresh.isRefreshing = isLoading
+            })
+            trackListResult.observe(viewLifecycleOwner, Observer { result ->
+                trackListAdapter.updateDataSet(result)
+            })
+            getTrackFromCache()
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -115,18 +88,9 @@ class TrackListFragment : BaseFragment<TrackListFragmentBinding, TrackListViewMo
         mListener = null
     }
 
-    /**
-     * Function to show error message
-     *
-     * @param message the informative message to display
-     */
-    private fun showErrorMessage(message: String) {
-        trackListAdapter.updateDataSet(emptyList())
-        with(invalidResultTextView) {
-            text = message
-            visibility = View.VISIBLE
-        }
-    }
+    override fun onQueryTextSubmit(query: String?) = viewModel.handleQueryTextSubmit(query)
+
+    override fun onQueryTextChange(newText: String?) = viewModel.handleQueryTextChange(newText)
 
     companion object {
         const val SPAN_COUNT = 2

@@ -8,6 +8,7 @@ import com.heliossoftwaredeveloper.itunes.ItunesApp
 import com.heliossoftwaredeveloper.itunes.di.module.AppModules
 import com.heliossoftwaredeveloper.itunes.di.module.ViewModelBindingModule
 import com.heliossoftwaredeveloper.itunes.di.module.ActivityBindingModule
+import com.heliossoftwaredeveloper.applicationdatabase.di.DatabaseModule
 import com.heliossoftwaredeveloper.trackclient.di.TrackClientModule
 import dagger.BindsInstance
 import dagger.Component
@@ -39,6 +40,7 @@ interface ApplicationComponent : AndroidInjector<ItunesApp> {
         fun networkModule(networkModule: NetworkModule): Builder
         fun trackClientModule(trackClientModule: TrackClientModule): Builder
         fun commonModule(commonModule: CommonModule): Builder
+        fun databaseModule(databaseModule: DatabaseModule): Builder
         fun build(): ApplicationComponent
     }
 }

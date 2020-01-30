@@ -2,7 +2,7 @@
 package com.heliossoftwaredeveloper.trackclient
 
 import com.google.gson.Gson
-import com.heliossoftwaredeveloper.trackclient.db.TrackEntity
+import com.heliossoftwaredeveloper.applicationdatabase.entity.TrackEntity
 import com.heliossoftwaredeveloper.trackclient.model.SearchTrackResponse
 import java.io.BufferedReader
 import java.io.FileReader
@@ -70,10 +70,11 @@ open class BaseTrackTest {
             trackTimeMillis = 8180628,
             country = "AUS",
             currency = "AUD",
-            primaryGenreName =  "Action & Adventure",
+            primaryGenreName = "Action & Adventure",
             contentAdvisoryRating = null,
             shortDescription = null,
-            longDescription = "Sample long description")
+            longDescription = "Sample long description"
+        )
         return listOf(trackEntity)
     }
 
