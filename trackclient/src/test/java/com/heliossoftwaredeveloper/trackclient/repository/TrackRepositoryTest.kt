@@ -18,7 +18,7 @@ import org.mockito.junit.MockitoJUnit
 
 class TrackRepositoryTest : BaseTrackTest(){
 
-    @Rule @JvmField val rule = MockitoJUnit.rule()!!
+    @Rule @JvmField val rule = MockitoJUnit.rule()
     @Rule @JvmField var testSchedulerRule =
         RxImmediateSchedulerRule()
 

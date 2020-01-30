@@ -77,7 +77,9 @@ fun String.formatStringDate(): String {
     return try {
         val simpleDateFormat = SimpleDateFormat(DISPLAY_SERVER_DATE_TIME_FORMAT, Locale.getDefault())
         simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
-        SimpleDateFormat(DISPLAY_DATE_FORMAT, Locale.getDefault()).format(simpleDateFormat.parse(this)!!)
+        simpleDateFormat.parse(this)?.let {
+            SimpleDateFormat(DISPLAY_DATE_FORMAT, Locale.getDefault()).format(it)
+        } ?: "Not Available"
     } catch (e: ParseException) {
         "Not Available"
     }

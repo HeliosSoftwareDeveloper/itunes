@@ -85,10 +85,11 @@ open class BaseTrackTest {
      *
      * @return SearchTrackResponse mock track response
      * */
-    private fun loadMockDataFromResource(fileName : String, classType : Class<out Any>) : Any {
-        val sourcePath = javaClass.classLoader?.getResource(fileName)
-        val bufferedReader = BufferedReader(FileReader(sourcePath!!.path))
-        return Gson().fromJson(bufferedReader, classType)
+    private fun loadMockDataFromResource(fileName : String, classType : Class<out Any>) : Any? {
+        return javaClass.classLoader?.getResource(fileName)?.let { sourcePath ->
+            val bufferedReader = BufferedReader(FileReader(sourcePath.path))
+            Gson().fromJson(bufferedReader, classType)
+        }
     }
 
 }
