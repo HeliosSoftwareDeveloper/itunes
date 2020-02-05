@@ -6,16 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import com.heliossoftwaredeveloper.common.util.SharedPreferencesManager
 import com.heliossoftwaredeveloper.common.util.safeDispose
 import com.heliossoftwaredeveloper.common.viewModel.BaseViewModel
-import com.heliossoftwaredeveloper.trackclient.model.SearchTrackResponse
 import com.heliossoftwaredeveloper.trackclient.repository.TrackRepository
 import com.heliossoftwaredeveloper.trackui.R
 import com.heliossoftwaredeveloper.trackui.model.TrackItem
 import com.heliossoftwaredeveloper.trackui.util.entityModelToTrackItem
-import com.heliossoftwaredeveloper.trackui.util.serviceModelToTrackEntity
 import com.heliossoftwaredeveloper.trackui.util.serviceModelToTrackItem
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -43,7 +39,6 @@ class TrackListViewModel @Inject constructor(
 
     private var trackCachedDisposable : Disposable? = null
     private var trackSearchDisposable : Disposable? = null
-    private var saveTrackDisposable : Disposable? = null
 
     /**
      * Function to handle SearchView on text change event
@@ -82,10 +77,9 @@ class TrackListViewModel @Inject constructor(
         val term = keyword ?: sharedPreferencesManager.stringValue(SharedPreferencesManager.LAST_KEYWORD_SEARCHED)
         _isLoading.postValue(true)
         trackSearchDisposable = trackRepository.searchTrack(term, DEFAULT_COUNTRY, DEFAULT_MEDIA)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { it?.saveTrackResponse(term) }
             .doFinally {
+                // Save the keyword to shared preference
+                sharedPreferencesManager.stringValue(SharedPreferencesManager.LAST_KEYWORD_SEARCHED, keyword)
                 _cacheLabel.postValue(null)
                 _isLoading.postValue(false)
             }
@@ -113,8 +107,6 @@ class TrackListViewModel @Inject constructor(
         if (trackListResult.value != null)
             return
         trackCachedDisposable = trackRepository.getLastSearchTrack()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
                     _cacheLabel.postValue(
@@ -134,24 +126,6 @@ class TrackListViewModel @Inject constructor(
                     trackCachedDisposable?.safeDispose()
                 }
             )
-    }
-
-    /**
-     * Extension Function to execute save searched track on track-repository
-     *
-     * @param keyword the keyword of track that the user is looking for.
-     */
-    private fun SearchTrackResponse.saveTrackResponse(keyword: String) {
-        saveTrackDisposable = trackRepository.saveSearchTrack(this.results.serviceModelToTrackEntity())
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext{
-                // Save the keyword to shared preference
-                sharedPreferencesManager.stringValue(SharedPreferencesManager.LAST_KEYWORD_SEARCHED, keyword)
-            }
-            .subscribe {
-                saveTrackDisposable?.safeDispose()
-            }
     }
 
     companion object {
