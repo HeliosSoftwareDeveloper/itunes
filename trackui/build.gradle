@@ -1,3 +1,6 @@
+import dependencies.Libs
+import dependencies.Versions
+
 apply from: "$rootDir/android-module-base.gradle"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
@@ -7,10 +10,15 @@ android {
     dataBinding {
         enabled = true
     }
+
+    defaultConfig {
+        multiDexEnabled true
+    }
 }
 dependencies {
     implementation project(':common')
     implementation project(':trackclient')
     implementation project(':appDB')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation Libs.Android.multiDexSupport
 }
