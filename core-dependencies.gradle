@@ -1,3 +1,4 @@
+apply from: "../ktlint.gradle"
 /**
  * Gradle file that is shared to all libraries and the app
  */
