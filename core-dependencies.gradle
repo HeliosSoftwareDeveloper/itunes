@@ -11,6 +11,12 @@ ext {
     appCompatVersion = Versions.appcompat
 }
 
+android {
+    defaultConfig {
+        multiDexEnabled true
+    }
+}
+
 dependencies {
     implementation Libs.Kotlin.kotlin
     implementation Libs.Android.appcompat
@@ -52,4 +58,5 @@ dependencies {
     testImplementation Libs.Test.jUnit
     androidTestImplementation Libs.Test.testRunner
     androidTestImplementation Libs.Test.androidxTestCore
+    implementation Libs.Android.multiDexSupport
 }
