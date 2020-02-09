@@ -7,10 +7,6 @@ android {
     dataBinding {
         enabled = true
     }
-
-    defaultConfig {
-        multiDexEnabled true
-    }
 }
 dependencies {
     implementation project(':common')
